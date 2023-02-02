@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tailwind.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
+    <title>Bach & Bin Wedding</title>
+</head>
+
+<body>
+    <div class="h-screen">
+        <img class="w-full h-full object-cover lazy" src="img/cover-placeholder.jpg" data-src="img/cover.jpg">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center w-full text-white">
+            <h1 class="font-['Dancing_Script'] text-[4rem] md:text-[6rem]  lg:text-[8rem] text-center">
+                Bách
+                <br class="md:hidden">
+                &
+                <br class="md:hidden">
+                Bình
+            </h1>
+            <p class="font-serif text-[2rem] uppercase"><span class="hidden md:inline">Saturday, </span>11.02.2023</p>
+        </div>
+        <div id="scroll-indicator"
+            class="absolute bottom-4 left-1/2 -translate-x-1/2 transition-opacity opacity-0 duration-500">
+            <div class="scroll-down"></div>
+        </div>
+    </div>
+    <div id="gallery" class="grid grid-flow-dense grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 p-2">
+    </div>
+    <template id="gallery-item">
+        <a class="block h-full w-full min-h-[20vh] relative cursor-pointer overflow-hidden group">
+            <img
+                class="absolute w-full h-full object-cover group-hover:scale-125 lazy transition-transform duration-200">
+            <div class="absolute inset-0 group-hover:opacity-50 bg-black opacity-0 transition-opacity duration-200">
+            </div>
+        </a>
+    </template>
+    <template id="lightbox">
+        <a href="#_" class="hidden target:block fixed inset-0 pointer-events-none target:pointer-events-auto">
+            <div class="absolute block inset-0 bg-black opacity-50 pointer-events-none"></div>
+            <div class="block absolute inset-4 pointer-events-none">
+                <img class="max-h-full max-w-full w-auto h-full mx-auto lazy object-contain">
+            </div>
+        </a>
+    </template>
+    <script>
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        setTimeout(() => document.querySelector('#scroll-indicator').classList.add("opacity-100"), 2000)
+        const gallery = document.querySelector('#gallery')
+        for (let i = 0; i < 51; i++) {
+            const item = document.querySelector('#gallery-item').content.cloneNode(true)
+            const container = item.querySelector('a')
+            container.id = `gallery-item-${i}`
+            container.href = `#lightbox-${i}`
+            container.classList.add(`col-span-${getRandomInt(1, 3)}`)
+            container.classList.add(`row-span-${getRandomInt(1, 3)}`)
+            const img = item.querySelector('img')
+            img.dataset.src = `img/gallery/${i}-thumbnail.jpg`
+            img.src = `img/gallery/${i}-placeholder.jpg`
+            gallery.appendChild(item)
+
+            const lightbox = document.querySelector('#lightbox').content.cloneNode(true)
+            const lightboxContainer = lightbox.querySelector('a')
+            lightboxContainer.id = `lightbox-${i}`
+            const lightboxImg = lightbox.querySelector('img')
+            lightboxImg.dataset.src = `img/gallery/${i}.jpg`
+            lightboxImg.src = `img/gallery/${i}-thumbnail.jpg`
+            document.body.appendChild(lightbox)
+        }
+
+        const lazyLoadInstance = new LazyLoad({
+            class_loading: 'blur-xl'
+        });
+    </script>
+</body>
+
+</html>
