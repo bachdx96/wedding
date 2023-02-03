@@ -60,9 +60,6 @@
         </a>
     </template>
     <script>
-        const lazyLoadInstance = new LazyLoad({
-            class_loading: 'blur-xl'
-        });
         const setCoverHeight = () => {
             document.querySelector("#cover").style.setProperty('height', `${window.innerHeight}px`)
         }
@@ -73,35 +70,40 @@
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-        setTimeout(() => document.querySelector('#scroll-indicator').classList.add("opacity-100"), 2200)
-        const gallery = document.querySelector('#gallery')
-        for (let i = 0; i < 51; i++) {
-            const item = document.querySelector('#gallery-item').content.cloneNode(true)
-            const container = item.querySelector('a')
-            container.id = `gallery-item-${i}`
-            container.href = `#lightbox-${i}`
+        const lazyLoadInstance = new LazyLoad({
+            class_loading: 'blur-xl'
+        });
+        setTimeout(() => {
+            document.querySelector('#scroll-indicator').classList.add("opacity-100")
+            const gallery = document.querySelector('#gallery')
+            for (let i = 0; i < 51; i++) {
+                const item = document.querySelector('#gallery-item').content.cloneNode(true)
+                const container = item.querySelector('a')
+                container.id = `gallery-item-${i}`
+                container.href = `#lightbox-${i}`
 
-            if ((i + 1) % 5 == 0) container.classList.add('col-span-2')
-            else container.classList.add('col-span-1')
+                if ((i + 1) % 5 == 0) container.classList.add('col-span-2')
+                else container.classList.add('col-span-1')
 
-            if ((i + 1) % 7 == 0) container.classList.add('row-span-2')
-            else if ((i + 2) % 6 == 0) container.classList.add('row-span-3')
-            else container.classList.add('row-span-1')
+                if ((i + 1) % 7 == 0) container.classList.add('row-span-2')
+                else if ((i + 2) % 6 == 0) container.classList.add('row-span-3')
+                else container.classList.add('row-span-1')
 
-            const img = item.querySelector('img')
-            img.dataset.src = `img/gallery/${i}-thumbnail.jpg`
-            img.src = `img/gallery/${i}-placeholder.jpg`
-            gallery.appendChild(item)
+                const img = item.querySelector('img')
+                img.dataset.src = `img/gallery/${i}-thumbnail.jpg`
+                img.src = `img/gallery/${i}-placeholder.jpg`
+                gallery.appendChild(item)
 
-            const lightbox = document.querySelector('#lightbox').content.cloneNode(true)
-            const lightboxContainer = lightbox.querySelector('a')
-            lightboxContainer.id = `lightbox-${i}`
-            const lightboxImg = lightbox.querySelector('img')
-            lightboxImg.dataset.src = `img/gallery/${i}.jpg`
-            lightboxImg.src = `img/gallery/${i}-thumbnail.jpg`
-            document.body.appendChild(lightbox)
-        }
-        lazyLoadInstance.update()
+                const lightbox = document.querySelector('#lightbox').content.cloneNode(true)
+                const lightboxContainer = lightbox.querySelector('a')
+                lightboxContainer.id = `lightbox-${i}`
+                const lightboxImg = lightbox.querySelector('img')
+                lightboxImg.dataset.src = `img/gallery/${i}.jpg`
+                lightboxImg.src = `img/gallery/${i}-thumbnail.jpg`
+                document.body.appendChild(lightbox)
+            }
+            lazyLoadInstance.update()
+        }, 2200)
     </script>
 </body>
 
