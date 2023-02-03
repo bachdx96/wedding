@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div id="cover" class="relative h-screen">
+    <div id="cover" class="relative h-screen transition-all duration-200">
         <div class="absolute inset-0">
             <img class="w-full h-full object-cover lazy" src="img/cover-placeholder.jpg"
                 data-src="img/cover-thumbnail.jpg">
@@ -64,7 +64,7 @@
             document.querySelector("#cover").style.setProperty('height', `${window.innerHeight}px`)
         }
         window.addEventListener('resize', setCoverHeight);
-        setTimeout(setCoverHeight, 500)
+        setInterval(setCoverHeight, 1000)
         setCoverHeight();
         function getRandomInt(min, max) {
             min = Math.ceil(min);
