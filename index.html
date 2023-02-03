@@ -64,7 +64,6 @@
             document.querySelector("#cover").style.setProperty('height', `${window.innerHeight}px`)
         }
         window.addEventListener('resize', setCoverHeight);
-        setInterval(setCoverHeight, 1000)
         setCoverHeight();
         function getRandomInt(min, max) {
             min = Math.ceil(min);
@@ -76,6 +75,7 @@
         });
         setTimeout(() => {
             document.querySelector('#scroll-indicator').classList.add("opacity-100")
+            setCoverHeight();
             const gallery = document.querySelector('#gallery')
             for (let i = 0; i < 51; i++) {
                 const item = document.querySelector('#gallery-item').content.cloneNode(true)
