@@ -22,14 +22,18 @@
         </div>
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center w-full text-white">
-            <h1 class="font-['Dancing_Script'] text-[4rem] md:text-[6rem] lg:text-[8rem] text-center">
+            <h1
+                class="font-['Dancing_Script'] text-[4rem] md:text-[6rem] lg:text-[8rem] text-center animate-in slide-in-from-left-full duration-1000 delay-500 fade-in fill-mode-backwards">
                 Bách
                 <br class="md:hidden">
                 &
                 <br class="md:hidden">
                 Bình
             </h1>
-            <p class="font-serif text-[2rem] uppercase"><span class="hidden md:inline">Saturday, </span>11.02.2023</p>
+            <p
+                class="font-serif text-[2rem] uppercase slide-in-from-right-full duration-1000 delay-1000 animate-in fade-in fill-mode-backwards">
+                <span class="hidden md:inline">Saturday, </span>11.02.2023
+            </p>
         </div>
         <div id="scroll-indicator"
             class="absolute bottom-4 left-1/2 -translate-x-1/2 transition-opacity opacity-0 duration-500">
@@ -65,7 +69,7 @@
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-        setTimeout(() => document.querySelector('#scroll-indicator').classList.add("opacity-100"), 2000)
+        setTimeout(() => document.querySelector('#scroll-indicator').classList.add("opacity-100"), 2200)
         const gallery = document.querySelector('#gallery')
         for (let i = 0; i < 51; i++) {
             const item = document.querySelector('#gallery-item').content.cloneNode(true)
