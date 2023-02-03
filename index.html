@@ -59,6 +59,9 @@
         </a>
     </template>
     <script>
+        const lazyLoadInstance = new LazyLoad({
+            class_loading: 'blur-xl'
+        });
         const setCoverHeight = () => {
             document.querySelector("#cover").style.setProperty('height', `${window.innerHeight}px`)
         }
@@ -97,10 +100,7 @@
             lightboxImg.src = `img/gallery/${i}-thumbnail.jpg`
             document.body.appendChild(lightbox)
         }
-
-        const lazyLoadInstance = new LazyLoad({
-            class_loading: 'blur-xl'
-        });
+        lazyLoadInstance.update()
     </script>
 </body>
 
